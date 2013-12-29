@@ -12,23 +12,23 @@ Ext.define('321.view.Main', {
 
         items: [
             {
-                title: 'Welcome',
+                title: 'Timer',
                 iconCls: 'home',
 
                 styleHtmlContent: true,
                 scrollable: true,
 
                 items:[{
-                   xtype:'timer',
-                   name:'timer3',
-                   timeUpSoundUrl:'../sounds/timerSound.mp3',
-                   fullSeconds:1200,
-                   markerTime:900,
-                   time:600,
-                   enableState:true,
-                   clearState:false,
-                   isTimeNCountSeprateCmp:false,
-                   timeColor:'#f00',
+                   xtype: 'timer',
+                   name: 'timer3',
+                   timeUpSoundUrl: 'resources/sounds/timerSound.mp3',
+                   fullSeconds: 1800,
+                   markerTime: 600,
+                   time: 600,
+//                   enableState:true,
+                   clearState: false,
+                   isTimeNCountSeprateCmp: false,
+                   timeColor: '#0893D4',
                    topHtml:'Timer with state enabled, custom values'
                 }]
             },
