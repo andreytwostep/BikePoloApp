@@ -1,18 +1,320 @@
 /*timer*/
-.topText, .bottomText{text-align:center; font-size:90%; color:#ffffff; border-top:0px solid #999999; background-color:#333333; }
-.topText .x-innerhtml, .bottomText .x-innerhtml{display: table-cell;vertical-align: middle;height:35px; width:10000px}
-.timerRoot{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:center;-webkit-box-pack:center;line-height:1.25 !important;}
-.timer{position:relative;width:320px;height:237px;background:url(../img/timer/timerBg.png) center;background-size:320px auto;border:0px solid #ff0000;margin:10px 0px;}
-.timer.timerOnly{width:208px;height:237px;background:url(../img/timer/timer.png) center;background-size:208px auto;}
-.timer .timer-circle {position:absolute;width:170px;height:170px;clip:rect(0px,170px,170px,85px);top:35px;left:19px;}
-.timer .time-text{position:absolute;top:70px;left:17px;text-align:center;width:180px;}
-.timer .big{font-size:66px; font-family:Helvetica; height:66px; display:inline-block; color:#343432;}
-.timer .medium{font-size:33px; font-family:Helvetica; height:33px; display:inline-block; color:#343432;}
-.timer .timer-pie{position:absolute;-webkit-mask-image:url(../img/timer/timerMask.png);-webkit-mask-origin:border-box; background-origin:border-box; border:0px;background-clip:border-box;}
-.timer .timer-circle.timer-pie180{clip:rect(auto, auto, auto, auto) !important;}
-.timer .timer-pie.timer-fill{-webkit-transform:rotate(180deg) !important;display:none;}
-.timer .timer-pie180 .timer-fill{display:inline !important;}
-.timer .timer-pie{background-color:#7EBFFF;border-color:transparent !important;width:170px;height:170px;clip:rect(0px,85px,170px,0px);-webkit-mask-size:170px 170px;-webkit-border-radius:85px;}
-.timer .marker{position:absolute;top:0px;left:103px;width:1px;height:240px;}
-.timer .markerImage{background:url(../img/timer/marker2x.png) top center no-repeat;background-size:42px 56px;margin-left:-21px;width:42px;height:56px;border:0px solid #ff0000;}
-.timer .timer-count-text{position:absolute;top:76px;left:208px;text-align:center;}
+@media only screen
+and (min-width : 320px)
+and (max-device-width : 480px) {
+
+    .topText, .bottomText {
+        text-align: center;
+        font-size: 90%;
+        color: #ffffff;
+        border-top: 0px solid #999999;
+        background-color: #333333;
+    }
+
+    .topText .x-innerhtml, .bottomText .x-innerhtml {
+        display: table-cell;
+        vertical-align: middle;
+        /*height: 35px;*/
+        /*width: 10000px*/
+    }
+
+    .timerRoot {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        line-height: 1.25 !important;
+    }
+
+    .timer {
+        position: relative;
+        width: 300px;
+        height: 190px;
+        background: url(../img/timer/timerBg2.png) no-repeat center;
+        background-size: 300px auto;
+        border: 0px solid #ff0000;
+        margin: 1em 0;
+    }
+
+    .timer.timerOnly {
+        width: 99px;
+        height: 113px;
+        background: url(../img/timer/timer.png) center;
+        background-size: 99px auto;
+    }
+
+    .timer .timer-circle {
+        position: absolute;
+        width: 119px;
+        height: 119px;
+        clip: rect(0px, 119px, 119px, 60px);
+        top: 32px;
+        left: 91px;
+    }
+
+    .timer .time-text {
+        position: absolute;
+        top: 70px;
+        left: 110px;
+        text-align: center;
+        width: 86px;
+    }
+
+    .timer .big {
+        font-size: 2em;
+        font-family: Helvetica;
+        height: 2em;
+        display: inline-block;
+        color: #343432;
+    }
+
+    .timer .medium {
+        font-size: 1em;
+        font-family: Helvetica;
+        height: 1em;
+        display: inline-block;
+        color: #343432;
+    }
+
+    .timer .timer-pie {
+        position: absolute;
+        -webkit-mask-image: url(../img/timer/timerMask.png);
+        -webkit-mask-origin: border-box;
+        background-origin: border-box;
+        border: 0px;
+        background-clip: border-box;
+    }
+
+    .timer .timer-circle.timer-pie180 {
+        clip: rect(auto, auto, auto, auto) !important;
+    }
+
+    .timer .timer-pie.timer-fill {
+        -webkit-transform: rotate(180deg) !important;
+        display: none;
+    }
+
+    .timer .timer-pie180 .timer-fill {
+        display: inline !important;
+    }
+
+    .timer .timer-pie {
+        background-color: #7EBFFF;
+        border-color: transparent !important;
+        width: 119px;
+        height: 119px;
+        clip: rect(0px, 60px, 119px, 0px);
+        -webkit-mask-size: 119px 119px;
+        -webkit-border-radius: 60px;
+    }
+
+    .timer .marker {
+        position: absolute;
+        top: 7px;
+        left: 151px;
+        width: 1px;
+        height: 169px;
+    }
+
+    .timer .markerImage {
+        background: url(../img/timer/marker2x.png) top center no-repeat;
+        background-size: 20px 27px;
+        margin-left: -10px;
+        width: 20px;
+        height: 27px;
+        border: 0px solid #ff0000;
+    }
+
+
+    .timer .timer-count-text {
+        position: absolute;
+        top: 70px;
+        left: 41px;
+        text-align: center;
+    }
+
+    .timer .timer-count-text-two {
+        position: absolute;
+        top: 70px;
+        left: 225px;
+        text-align: center;
+    }
+
+    .decrease, .decreaseTwo {
+        background: url(../img/timer/minus.png) center center no-repeat;
+        background-size: 1em 1em;
+        position: absolute;
+        height: 1em;
+        width: 1em;
+    }
+    .decrease {
+        top: 112px;
+        left: 24px;
+    }
+    .decreaseTwo {
+        top: 112px;
+        left: 262px;
+    }
+
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+/*and (max-device-width : 1024px) */{
+
+    .topText, .bottomText {
+        text-align: center;
+        font-size: 90%;
+        color: #ffffff;
+        border-top: 0px solid #999999;
+        background-color: #333333;
+    }
+
+    .topText .x-innerhtml, .bottomText .x-innerhtml {
+        display: table-cell;
+        vertical-align: middle;
+        /*height: 35px;*/
+        /*width: 10000px*/
+    }
+
+    .timerRoot {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        line-height: 1.25 !important;
+    }
+
+    .timer {
+        position: relative;
+        width: 640px;
+        height: 400px;
+        background: url(../img/timer/timerBg2.png) no-repeat center;
+        background-size: 640px auto;
+        border: 0px solid #ff0000;
+        margin: 1.5em 0;
+    }
+
+    .timer.timerOnly {
+        width: 208px;
+        height: 237px;
+        background: url(../img/timer/timer.png) center;
+        background-size: 208px auto;
+    }
+
+    .timer .timer-circle {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        clip: rect(0px, 250px, 250px, 125px);
+        top: 67px;
+        left: 194px;
+    }
+
+    .timer .time-text {
+        position: absolute;
+        top: 141px;
+        left: 230px;
+        text-align: center;
+        width: 180px;
+    }
+
+    .timer .big {
+        font-size: 66px;
+        font-family: Helvetica;
+        height: 66px;
+        display: inline-block;
+        color: #343432;
+    }
+
+    .timer .medium {
+        font-size: 33px;
+        font-family: Helvetica;
+        height: 33px;
+        display: inline-block;
+        color: #343432;
+    }
+
+    .timer .timer-pie {
+        position: absolute;
+        -webkit-mask-image: url(../img/timer/timerMask.png);
+        -webkit-mask-origin: border-box;
+        background-origin: border-box;
+        border: 0px;
+        background-clip: border-box;
+    }
+
+    .timer .timer-circle.timer-pie180 {
+        clip: rect(auto, auto, auto, auto) !important;
+    }
+
+    .timer .timer-pie.timer-fill {
+        -webkit-transform: rotate(180deg) !important;
+        display: none;
+    }
+
+    .timer .timer-pie180 .timer-fill {
+        display: inline !important;
+    }
+
+    .timer .timer-pie {
+        background-color: #7EBFFF;
+        border-color: transparent !important;
+        width: 250px;
+        height: 250px;
+        clip: rect(0px, 125px, 250px, 0px);
+        -webkit-mask-size: 250px 250px;
+        -webkit-border-radius: 125px;
+    }
+
+    .timer .marker {
+        position: absolute;
+        top: 14px;
+        left: 318px;
+        width: 1px;
+        height: 356px;
+    }
+
+    .timer .markerImage {
+        background: url(../img/timer/marker2x.png) top center no-repeat;
+        background-size: 42px 56px;
+        margin-left: -21px;
+        width: 42px;
+        height: 56px;
+        border: 0px solid #ff0000;
+    }
+
+
+    .timer .timer-count-text {
+        position: absolute;
+        top: 141px;
+        left: 87px;
+        text-align: center;
+    }
+
+    .timer .timer-count-text-two {
+        position: absolute;
+        top: 141px;
+        left: 478px;
+        text-align: center;
+    }
+
+    .decrease, .decreaseTwo {
+        background: url(../img/timer/minus.png) center center no-repeat;
+        background-size: 2em 2em;
+        position: absolute;
+        height: 2em;
+        width: 2em;
+    }
+    .decrease {
+        top: 239px;
+        left: 50px;
+    }
+    .decreaseTwo {
+        top: 239px;
+        left: 560px;
+    }
+}
+

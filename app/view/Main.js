@@ -1,75 +1,78 @@
-Ext.define('321.view.Main', {
-    extend: 'Ext.tab.Panel',
-    xtype: 'main',
-    requires: [
-        'Ext.TitleBar',
-        'Ext.Video',
-	    'Ext.Audio',
-	    'Ext.field.Hidden'
-    ],
-    config: {
-        tabBarPosition: 'bottom',
+Ext.define('BikePolo.view.Main', {
+	extend: 'Ext.tab.Panel',
+	xtype: 'main',
+	requires: [
+		'Ext.TitleBar',
+		'Ext.Audio',
+		'Ext.field.Hidden',
+		'Ext.dataview.List',
+		'Ext.plugin.PullRefresh'
+	],
+	config: {
+		tabBarPosition: 'bottom',
+		activeItem: 2,
 
-        items: [
-            {
-                title: 'Timer',
-                iconCls: 'home',
+		items: [
+			{
+				title: 'Timer',
+				iconCls: 'home',
 
-                styleHtmlContent: true,
-                scrollable: true,
+				styleHtmlContent: true,
+				scrollable: true,
 
-                items:[{
-                   xtype: 'timer',
-                   name: 'timer3',
-                   timeUpSoundUrl: 'resources/sounds/timerSound.mp3',
-                   fullSeconds: 1800,
-                   markerTime: 600,
-                   time: 600,
-//                   enableState:true,
-                   clearState: false,
-                   isTimeNCountSeprateCmp: false,
-                   timeColor: '#0893D4',
-                   topHtml:'Timer with state enabled, custom values'
-                }]
-            },
-            // {
-            //     xtype: 'container',
-            //     layout:{
-            //        type:'vbox',
-            //        align:'center',
-            //        pack:'center'
-            //     },
-            //     items:[{
-            //        xtype:'timer',
-            //        name:'timer3',
-            //        timeUpSoundUrl:'../ext.ux.timer/timerSound.mp3',
-            //        fullSeconds:3600,
-            //        markerTime:900,
-            //        time:600,
-            //        enableState:true,
-            //        clearState:false,
-            //        isTimeNCountSeprateCmp:false,
-            //        timeColor:'#f00',
-            //        topHtml:'Timer with state enabled, custom values'
-            //     }]
-            // },
-            {
-                title: 'Get Started',
-                iconCls: 'action',
+				items: [
+					{
+						xtype: 'timer',
+						name: 'timer3',
+						timeUpSoundUrl: 'resources/sounds/timerSound.mp3',
+						fullSeconds: 1800,
+						markerTime: 600,
+						time: 600,
+						isTimeNCountSeprateCmp: false,
+						timeColor: '#0893D4'
+					}
+				]
+			},
+			{
+				title: 'Teams',
+				iconCls: 'action',
+				items: [
+					{
+						docked: 'top',
+						xtype: 'titlebar',
+						title: 'Teams'
+					},
+					{
+						xtype: 'panel',
+						layout: 'hbox',
+						margin: '.5em',
+						height: '100%',
+						items: [
+							{
+								xtype: 'panel',
+								flex: .5,
+								html: '<h3>First</h3>'
+							},
+							{
+								xtype: 'panel',
+								flex: .5,
+								html: '<h3>Second</h3>'
+							}
 
-                items: [
-                    {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: 'Getting Started'
-                    },
-                    {
-                        xtype: 'video',
-                        url: 'http://av.vimeo.com/64284/137/87347327.mp4?token=1330978144_f9b698fea38cd408d52a2393240c896c',
-                        posterUrl: 'http://b.vimeocdn.com/ts/261/062/261062119_640.jpg'
-                    }
-                ]
-            }
-        ]
-    }
+						]
+					}
+				]
+			},
+			{
+				title: 'Players',
+				iconCls: 'favorites',
+				layout: 'fit',
+				items: [
+					{
+						xtype: 'playerslist'
+					}
+				]
+			}
+		]
+	}
 });

@@ -1,86 +1,3 @@
-/**
- * @aside video timer
- * @aside example timer
- * @author Surinder Singh http://developerextensions.com
- *  
- * A very simple class to show timer and count components
- *
- * it's minimum config is
- * - `name`: The name of the timer to keep it unique in your app. For more help see {@link #name}
- *
- * Timer component let you build a timer plus counter, where your user can set timer and start counting their activities, They can also use timer and counter separately. You can show timer without counter component.
- *
- * Timer component support state, so you can use this component where it is being destroy to increase app performance. or where your app is web-app and user visit multiple pages, timer can restore values.
- *
- * You can also use it as a clock where you need alarm , because at time-up event it play a sound which can be set through it's config, It also support sound for tick-tick (sound at each second step)
- *
- * Remember, {@link Ext.ux.Timer} class extends from {@link Ext.Container}.
- *
- * ## Examples
- * ###Default Timer
- *
- *     @example preview
- *     Ext.Viewport.add({
- *			xtype: 'container',			
- *			layout:{
- *				type:'vbox',
- *				align:'center',
- *				pack:'center'
- *			},
- *			items:[{
- *				xtype:'timer',
- *				name:'timer1',
- *				timeUpSoundUrl:'../ext.ux.timer/timerSound.mp3',
- *				topHtml:'Default Timer'
- *			}]
- *		});
- *
- *
- 
- * ###Only Timer with initial time settings
- *     @example preview
- *     Ext.Viewport.add({
- *			xtype: 'container',			
- *			layout:{
- *				type:'vbox',
- *				align:'center',
- *				pack:'center'
- *			},
- *			items:[{
- *				xtype:'timer',
- *				name:'timer2',
- *				timeUpSoundUrl:'../ext.ux.timer/timerSound.mp3',
- *				timerOnly:true,
- *				time:200,
- *				markerTime:600,
- *				topHtml:'Only Timer with initial time settings'
- *			}]
- *		});
- *
- * ###Timer with state enabled, custom values
- *     @example preview
- *     Ext.Viewport.add({
- *			xtype: 'container',			
- *			layout:{
- *				type:'vbox',
- *				align:'center',
- *				pack:'center'
- *			},
- *			items:[{
- *				xtype:'timer',
- *				name:'timer3',
- *				timeUpSoundUrl:'../ext.ux.timer/timerSound.mp3',
- *				fullSeconds:3600,
- *				markerTime:900,
- *				time:600,
- *				enableState:true,
- *				clearState:false,
- *				isTimeNCountSeprateCmp:false,
- *				timeColor:'#f00',
- *				topHtml:'Timer with state enabled, custom values'
- *			}]
- *		});
- */
 Ext.define('Ext.ux.Timer',{
 	xtype:'timer',
 	extend:'Ext.Container',
@@ -88,114 +5,34 @@ Ext.define('Ext.ux.Timer',{
 		timeIntervals:{}
 	},
 	config:{
-		/**
-         * @cfg {String} name two hidden form field will be created with this name as name-time and name-count so that we can use it under form as other input fields
-         */
-		name:'timer-1',
-
-		/**
-         * @cfg {Number} fullSeconds Full Time in seconds
-		 * default is 1800 (30 min).
-         */
-		fullSeconds:1800,
-		
-		/**
-         * @cfg {Number} counts initial count, It will not make any effect if {@link #enableState}=true
-         */
-		counts:0,
-		
-		/**
-         * @cfg {Number} time initial Time, It will not make any effect if {@link #enableState}=true
-         */
-		time:0,
-		
-		/**
-         * @cfg {Number} markerTime initial Marker Time, It will not make any effect if {@link #enableState}=true
-         */
-		markerTime:0,
-		
-		/**
-         * @cfg {Number} timeRunning Is time running by default, It will not make any effect if {@link #enableState}=true
-         */
-		timeRunning:false,
-		
-		
-		
-		/**
-         * @cfg {Number} stepValue if {@link #enableState}=false we use this value to decrement the time.
-         */
-		stepValue:1,
-		
-		/**
-         * @cfg {Boolean} isTimeNCountSeprateCmp Setting it true Make the timer and count indipendent.
-         */
-		isTimeNCountSeprateCmp:true,
-		
-		/**
-         * @cfg {String} invalidCountTapTitle if {@link #isTimeNCountSeprateCmp} is false and user tap on count without starting the timer we show a message with this title.
-         */
-		invalidCountTapTitle:'Start timer',
-		
-		/**
-         * @cfg {String} invalidCountTapMsg if {@link #isTimeNCountSeprateCmp} is false and user tap on count without starting the timer we show a message with this message.
-         */
-		invalidCountTapMsg:'Start the timer first',
-		
-		/**
-         * @cfg {String} timeUpSoundUrl path to sound file which plays on time up event.
-         */
-		timeUpSoundUrl:'media/timerSound.mp3',
-		
-		/**
-         * @cfg {String} timeSoundUrl path to sound file which plays on each second when timer is running.
-         */
-		timeSoundUrl:'',
-		
-		/**
-         * @cfg {String/Number} bottomHtml Extra html at bottom.
-         */
-		bottomHtml:'',
-		
-		/**
-         * @cfg {String/Number} topHtml Extra html at top.
-         */
-		topHtml:'',
-		
-		/**
-         * @cfg {Boolean} enableState Make the timer and count stateble so that timer can work in page refershing app or where timer will be destroy on hide like MVC app.
-         */
-		enableState:false,
-		
-		/**
-         * @cfg {Boolean} clearState clear the timer stored state.
-         */
-		clearState:false,
-		
-		/**
-         * @cfg {Boolean} timerOnly Show timer only (hide count box).
-         */
-		timerOnly:false,		
-		
-		/**
-         * @cfg {String} timeColor HEX color code for time arc as "#FF0000".
-         */
-		timeColor:false,
-		
-		/**
-         * @cfg {String} appId localstorage prefix id. So that we can use same {@link #name} in more than one application.
-         */
-		appId:'MYAPP',
-		
-		dragStepModular:2,
+		name: 'timerView',
+		fullSeconds: 1800,
+		counts: 0,
+		countsTwo: 0,
+		time: 600,
+		markerTime: 600,
+		timeRunning: false,
+		stepValue: 1,
+		isTimeNCountSeprateCmp: false,
+		invalidCountTapTitle: 'Start timer',
+		invalidCountTapMsg: 'Start the timer first',
+		timeUpSoundUrl: 'resources/sounds/timerSound.mp3',
+		timeSoundUrl: '',// every second sound
+		bottomHtml: '',
+		topHtml: '',
+		timerOnly: false,
+		timeColor: '#0893D4',
+		appId: '321',
+		dragStepModular: 2,
 		alertMsg:'Time Up'
-	},	
-	getElementConfig:function(){		
+	},
+	getElementConfig:function(){
 		return {
 			reference:'element',
 			className:'x-container',
 			children: [{
                 reference: 'innerElement',
-                className: 'x-inner timerRoot',            
+                className: 'x-inner timerRoot',
 				children:[{
 					reference:'timerBox',
 					cls:'timer',
@@ -229,6 +66,16 @@ Ext.define('Ext.ux.Timer',{
 						children:[{
 							reference:'countText',
 							cls:'big',
+							name: 1,
+							html:'00'
+						}]
+					},{
+						reference:'timerCountTextBoxTwo',
+						cls:'timer-count-text-two',
+						children:[{
+							reference:'countTextTwo',
+							cls:'big',
+							name: 2,
 							html:'00'
 						}]
 					},{
@@ -238,7 +85,17 @@ Ext.define('Ext.ux.Timer',{
 							reference:'markerImage',
 							cls:'markerImage'
 						}]
-					}]
+					},{
+						reference:'decrease',
+						cls:'decrease',
+						name: 1
+					},{
+						reference:'decreaseTwo',
+						cls:'decreaseTwo',
+						name: 2
+					}
+
+					]
 				}]
 			}]
 		}
@@ -247,9 +104,9 @@ Ext.define('Ext.ux.Timer',{
         var me 		= this;
 		config		= config?config:{};
 		config		= Ext.applyIf(config, me.config);
-		
+
 		if(!config.items){
-			config.items = [];	
+			config.items = [];
 		}
 		config.items.push({
 			xtype:'hiddenfield',
@@ -263,7 +120,13 @@ Ext.define('Ext.ux.Timer',{
 			cls:'count',
 			ref:'count'
 		});
-		
+		config.items.push({
+			xtype:'hiddenfield',
+			name:config.name+'-countTwo',
+			cls:'count',
+			ref:'countTwo'
+		});
+
 		var timeUpSoundUrl = config.timeUpSoundUrl;
 		if(timeUpSoundUrl!=''){
 			var timeUpSoundPlayerId = 'timeUpSound_'+config.name;
@@ -295,16 +158,24 @@ Ext.define('Ext.ux.Timer',{
 					renderTo:document.body
 				});
 			}
-		}		
+		}
 		arguments[0] = config;
         me.callParent(arguments);
 		me.innerElement.removeCls('x-html');
 		me.on('deactivate', me.onDeactivate, me);
 		me.marker.on('drag', me.onDrag, me);
 		me.marker.on('dragend', me.onDragEnd, me);
+
 		me.countText.on('touchstart', me.onCountTextTouchStart, me);
 		me.countText.on('touchend', me.onCountTextTouchEnd, me);
 		me.countText.on('tap', me.onCountTextTap, me);
+		me.countTextTwo.on('touchstart', me.onCountTextTouchStart, me);
+		me.countTextTwo.on('touchend', me.onCountTextTouchEnd, me);
+		me.countTextTwo.on('tap', me.onCountTextTap, me);
+
+		me.decrease.on('tap', me.onCountDecreaseTap, me);
+		me.decreaseTwo.on('tap', me.onCountDecreaseTap, me);
+
 		me.timerTimeTextBox.on('tap', me.onTimerTimeTextBoxTap, me);
 		me.marker.on('tap', me.onTimerTimeTextBoxTap, me);
 		me.timerCircleBox.on('tap', me.onTimerTimeTextBoxTap, me);
@@ -313,24 +184,22 @@ Ext.define('Ext.ux.Timer',{
 			me.timerCountTextBox.hide();
 		}
 		if(config.timeColor){
-			me.timerPie1.setStyle({'background-color':config.timeColor, 'border-color':config.timeColor});
-			me.timerPie2.setStyle({'background-color':config.timeColor, 'border-color':config.timeColor});
+			me.timerPie1.setStyle({'background-color':config.timeColor/*, 'border-color':config.timeColor*/});
+			me.timerPie2.setStyle({'background-color':config.timeColor/*, 'border-color':config.timeColor*/});
 		}
     },
 	beforeInitialize:function(){
 		var me	= this;
 		me.hiddenFieldTime 	= me.child('hiddenfield[ref="time"]');
 		me.hiddenFieldCount = me.child('hiddenfield[ref="count"]');
+		me.hiddenFieldCountTwo = me.child('hiddenfield[ref="countTwo"]');
 		me.callParent(arguments);
 	},
 	beforeInitConfig:function(){
 		this.callParent(arguments);
-		if(this.getClearState()){
-			this.clearState();
-		}	
 	},
 	onDeactivate:function(){
-		this.set_TimeRunning(false);
+		this.setTimeRunning(false);
 	},
 	onCountTextTouchStart:function(e){
 		var me	= this;
@@ -354,40 +223,56 @@ Ext.define('Ext.ux.Timer',{
 	},
 	onTimerTimeTextBoxTap:function(e){
 		e.stopEvent();
-		/*if(!this.playerLoaded){
-			this.playerLoaded = true;
-			this.startTimeUpSound(true);
-		}*/
-		var time		= this.getTime();
-		
+		var time = this.getTime();
 		if(time<1){
 			return;
 		}
 		var timeRunning = this.getTimeRunning();
 		if(!timeRunning){
-			this.set_TimeRunning(true);
+			this.setTimeRunning(true);
 			this.startTiming();
 		}else{
-			this.set_TimeRunning(false);
+			this.setTimeRunning(false);
 			this.stopTiming();
 		}
 	},
-	onCountTextTap:function(e){
+
+	// for both counters
+	onCountTextTap:function(e, el){
 		if(this.fireTapEvent){
-			var counts = this.getCounts()+1;
-			if(counts>99){
-				counts = 0;	
+			var counter = el.getAttribute('name');
+			var counts = (counter == 1) ? this.getCounts()+1 : this.getCountsTwo()+1;
+			if(counts>10){
+				counts = 0;
 			}
-			this.set_Counts(counts);
+			(counter == 1) ? this.set_Counts(counts, counter) : this.set_Counts(counts, counter);
 		}
 	},
+
+	// for both counters
+	onCountDecreaseTap:function(e, el){
+		if(this.fireTapEvent){
+			var me = this;
+			var counter = el.getAttribute('name');
+			var counts = (counter == 1) ? this.getCounts()-1 : this.getCountsTwo()-1;
+			if((this.getCounts() == 0 && counter == 1) || (this.getCountsTwo() == 0 && counter == 2)){
+				counts = 0;
+			}
+			Ext.Msg.confirm("Confirmation", "Are you sure you want to do that?", function(e) {
+				if(e == 'yes') {
+					(counter == 1) ? me.set_Counts(counts, counter) : me.set_Counts(counts, counter);
+				}
+			});
+		}
+	},
+
 	onDragEnd:function(e){
 		e.stopEvent( )
 	},
 	onDrag:function(e){
 		e.stopEvent( )
 		this.stopTimeUpSound();
-		this.set_TimeRunning(false);
+		this.setTimeRunning(false);
 		this.stopTiming();
 		var xy			= this.getXY(), updateLastDeg=true;
 		var deg			= this.rad2deg(Math.atan2(e.getPageY() - xy.y, e.getPageX() - xy.x))+90;
@@ -399,7 +284,7 @@ Ext.define('Ext.ux.Timer',{
 			}else if(deg>=180 && deg<=360 && this.lastDeg>=0 && this.lastDeg<=90){
 				deg = 0;
 				updateLastDeg = false;
-			}			
+			}
 		}
 		if(updateLastDeg){
 			this.lastDeg	= deg;
@@ -416,8 +301,8 @@ Ext.define('Ext.ux.Timer',{
 	},
 	setTimerForDeg:function(deg){
 		var time		= Math.round(deg*this.getFullSeconds()/360);
-		this.set_Time(time);
-		this.set_MarkerTime(time);
+		this.setTime(time);
+		this.setMarkerTime(time);
 	},
 	stopTiming:function(clearAll, fireTimeUp){
 		var name	= this.getName();
@@ -434,94 +319,42 @@ Ext.define('Ext.ux.Timer',{
 		}
 	},
 	startTiming:function(){
-		var me = this, stepValue = me.getStepValue(), enableState = this.getEnableState();
+		var me = this, stepValue = me.getStepValue();
 		me.stopTiming(true);
 		this.self.timeIntervals[this.getName()]	= setInterval(function(){
 			var time	= me.applyTime(me.getTime());
-			if(!enableState){
-				time		= time-stepValue;
-			}
+			time		= time-stepValue;
 			if(time<=0){
 				time=0;
 				me.stopTiming(true, true);
 			}
-			me.set_Time(time);
-		}, 1000);		
-	},	
-	set_Counts:function(v, dontCheckTimeRunning){
+			me.setTime(time);
+		}, 1000);
+	},
+	set_Counts:function(v, counter, dontCheckTimeRunning){
 		if(!dontCheckTimeRunning && !this.getTimeRunning() && !this.getIsTimeNCountSeprateCmp()){
 			Ext.Msg.alert(this.getInvalidCountTapTitle(),this.getInvalidCountTapMsg());
 			return;
 		}
-		if(this.getEnableState()){
-			this.setLocalStoreValue('counts', v);
-		}
-		this.setCounts(v);		
+		counter == 1 ? this.setCounts(v) : this.setCountsTwo(v);
 	},
-	set_TimeRunning:function(v){
-		if(this.getEnableState()){
-			this.setLocalStoreValue('timeRunning', (v?'true':''));
-		}
-		this.setTimeRunning(v);
-	},
-	set_MarkerTime:function(v){
-		if(this.getEnableState()){
-			this.setLocalStoreValue('markerTime', v);
-		}
-		this.setMarkerTime(v);
-	},
-	set_Time:function(v){
-		if(this.getEnableState()){
-			this.setLocalStoreValue('timeOnSetTime', Ext.Date.format(new Date(), 'U'));
-			this.setLocalStoreValue('time', v);
-		}
-		this.setTime(v);
-	},
+
 	applyCounts:function(v){
-		if(this.getEnableState()){
-			return parseInt(this.getLocalStoreValue('counts'), 10);
-		}
 		return v;
 	},
 	applyTime:function(v){
-		if(v<0){v =0;}
-		if(this.getEnableState()){			
-			var timeDefference 	= 0;			
-			if(this.getTimeRunning()){
-				var timeOnSetTime 	= parseInt(this.getLocalStoreValue('timeOnSetTime'), 10);
-				if(timeOnSetTime){
-					timeDefference = Ext.Date.format(new Date(), 'U')-timeOnSetTime;
-				}
-			}
-			v = parseInt(this.getLocalStoreValue('time'), 10)-timeDefference;
-			v = (v<0)?0:v;
-		}
-		if(v<1){
-			this.set_TimeRunning(false);
+		if(v < 0){ v = 0; }
+
+		if(v < 1){
+			this.setTimeRunning(false);
 		}
 		return v;
 	},
 	applyMarkerTime:function(v){
-		if(this.getEnableState()){
-			return parseInt(this.getLocalStoreValue('markerTime'), 10);
-		}
 		return v;
 	},
 	applyTimeRunning:function(v){
-		if(this.getEnableState()){
-			v = (this.getLocalStoreValue('timeRunning')=='true');
-		}
 		return v;
-	},
-	updateEnableState:function(enable){
-		if(!enable){
-			this.clearState();	
-		}
-	},
-	applyClearState:function(clear){
-		if(clear){
-			this.clearState();
-		}
 	},
 	updateCounts:function(counts){
 		this.hiddenFieldCount.setValue(counts);
@@ -531,6 +364,18 @@ Ext.define('Ext.ux.Timer',{
 		counts = Ext.String.leftPad(counts, 2, '0');
 		this.countText.setHtml(counts);
 	},
+
+	/* second counter */
+	updateCountsTwo:function(counts){
+		this.hiddenFieldCountTwo.setValue(counts);
+		if(!this.countTextTwo){
+			return;
+		}
+		counts = Ext.String.leftPad(counts, 2, '0');
+		this.countTextTwo.setHtml(counts);
+	},
+	/* ------------- */
+
 	updateTime:function(time, oldValue){
 		this.Minutes	= Math.floor(time/60);
 		this.Seconds	= (time-(this.Minutes*60));
@@ -558,7 +403,7 @@ Ext.define('Ext.ux.Timer',{
 			this.stopBgSound();;
 		}
 	},
-	
+
 	getMinutes:function(){
 		if(!this.Minutes){
 			this.Minutes = 0;
@@ -580,7 +425,7 @@ Ext.define('Ext.ux.Timer',{
 	},
 	updateTimeArcPostion:function(deg){
 		if(!this.timerCircleBox){
-			return;	
+			return;
 		}
 		deg = this.adjustDeg(deg);
 		if(deg>180){
@@ -595,7 +440,7 @@ Ext.define('Ext.ux.Timer',{
 		this.marker.setStyle('-webkit-transform', 'rotate('+deg+'deg)');
 	},
 	getXY:function(){
-		var timerOuterBox = this.timerCircleBox.getBox();		
+		var timerOuterBox = this.timerCircleBox.getBox();
 		return {x:timerOuterBox.x+(timerOuterBox.width/2), y:timerOuterBox.y+(timerOuterBox.height/2)};
 	},
 	rad2deg:function(radian){
@@ -611,9 +456,9 @@ Ext.define('Ext.ux.Timer',{
 		return (360*time/this.getFullSeconds());
 	},
 	setLocalStoreValue:function(name, value){
-		var appId = this.getAppId();	
-		localStorage[appId+'timer_'+this.getName()+'_'+name] = value;	
-		return value;		
+		var appId = this.getAppId();
+		localStorage[appId+'timer_'+this.getName()+'_'+name] = value;
+		return value;
 	},
 	getLocalStoreValue:function(name){
 		var appId = this.getAppId();
@@ -623,17 +468,11 @@ Ext.define('Ext.ux.Timer',{
 		}
 		return v;
 	},
-	clearState:function(){
-		this.setLocalStoreValue('time', 0);
-		this.setLocalStoreValue('markerTime', 0);
-		this.setLocalStoreValue('counts', 0);
-		this.setLocalStoreValue('timeOnSetTime', 0);
-		this.setLocalStoreValue('timeRunning', false);		
-	},
+
 	stopTimeUpSound:function(){
 		var me = this;
 		if(me.timeUpSound && me.timeUpSound.isPlaying()){
-			me.timeUpSound.stop();	
+			me.timeUpSound.stop();
 		}
 	},
 	startTimeUpSound:function(silent){
@@ -643,15 +482,15 @@ Ext.define('Ext.ux.Timer',{
 			if(silent){
 				this.timeUpSound.setVolume(0);
 			}else{
-				this.timeUpSound.setVolume(1);	
+				this.timeUpSound.setVolume(1);
 			}
-			me.timeUpSound.play();			
+			me.timeUpSound.play();
 		}
 	},
 	stopBgSound:function(){
 		var me = this;
 		if(me.bgSound && me.bgSound.isPlaying()){
-			me.bgSound.stop();	
+			me.bgSound.stop();
 		}
 	},
 	startBgSound:function(){
@@ -668,12 +507,12 @@ Ext.define('Ext.ux.Timer',{
 	},
 	destroy:function(){
 		this.stopTiming();
-		this.callParent();		
+		this.callParent();
 	},
 	applyBottomHtml:function(html){
 		if(html.length<1){
-			return;	
-		}		
+			return;
+		}
 		this.add({
 			xtype:'component',
 			docked:'bottom',
@@ -683,7 +522,7 @@ Ext.define('Ext.ux.Timer',{
 	},
 	applyTopHtml:function(html){
 		if(html.length<1){
-			return;	
+			return;
 		}
 		this.add({
 			xtype:'component',

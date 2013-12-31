@@ -16,20 +16,33 @@
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
-    '321': 'app'
+	'Ext.ux': 'touch/src/ux',
+    'BikePolo': 'app'
 });
 //</debug>
 
 Ext.application({
-    name: '321',
+    name: 'BikePolo',
 
     requires: [
         'Ext.MessageBox',
         'Ext.ux.Timer'
     ],
 
-    views: [
-        'Main'
+	controllers: [
+		'Data',
+		'Helper',
+		'Main'
+	],
+
+	stores: [ 'LocalSettings' ],
+
+	models: [ 'LocalSettings' ],
+
+	views: [
+        'Main',
+		'PlayersList',
+		'PlayerItem'
     ],
 
     icon: {
@@ -55,7 +68,7 @@ Ext.application({
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('321.view.Main'));
+        Ext.Viewport.add(Ext.create('BikePolo.view.Main'));
     },
 
     onUpdated: function() {

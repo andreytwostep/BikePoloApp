@@ -2,7 +2,7 @@
     /**
      * The application's namespace, used by Sencha Command to generate classes
      */
-    "name": "321",
+    "name": "BikePolo",
 
     /**
      * The file path to this application's front HTML document, relative to this app.json file
@@ -72,11 +72,13 @@
             "update": "delta"
         },
 		{
-			"path": "resources/css/ext.ux.timer.css",
+			"path": "resources/css/style.css",
 			"update": "delta"
 		},
-
-
+		{
+			"path": "resources/css/ext.ux.timer.css",
+			"update": "delta"
+		}
     ],
 
     /**

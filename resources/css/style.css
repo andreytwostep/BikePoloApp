@@ -1,0 +1,9 @@
+.editPlayerBtn {
+    float: right;
+    display: none;
+    margin: 0 .5em 0 .5em
+}
+
+.removePlayerBtn {
+    margin: 0 .5em .5em 0
+}
