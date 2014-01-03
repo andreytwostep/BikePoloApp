@@ -1,0 +1,598 @@
+@import 'sencha-touch/default/all';
+
+    $alternative-color: #134780;
+    $base-color: #3799d6;
+    $confirm-color: #799D54;
+    $alert-color: #f31611;
+    $neutral-color: $base-color;
+    $active-color: darken($base-color, 20%);
+
+    // GRADIENTS
+    //$base-gradient: 'matte';
+
+    // LISTS
+    $list-color: darken($active-color, 20%);
+    $list-active-color: transparentize($active-color, .2);
+    $list-active-gradient: 'recessed';
+    $list-header-bg-color: darken($alternative-color, 10%);
+    $list-pressed-color: lighten($list-active-color, 10%);
+    $basic-slider: true;
+
+    // TABS
+    $tabs-dark: transparentize($alternative-color, 1.0); // This sets the tab selection to transparent
+    $tabs-dark-color: #fff;
+    $tabs-bottom-active-gradient: color-stops(darken($alternative-color, 25%), darken($alternative-color, 35%));  // This sets the color for the "bottom" tab icons and gradient
+    $tabs-bar-gradient: color-stops(lighten($alternative-color, 25%), lighten($alternative-color, 10%));
+    $tabs-bottom-icon-size: 32px;
+    $tabs-bottom-inactive-gradient: color-stops(red, blue);
+
+    // TOOLBARS
+    //$toolbar-gradient: color-stops(darken($active-color, 15%), darken($active-color, 1%));
+    $toolbar-gradient: color-stops(lighten($alternative-color, 10%), lighten($alternative-color, 25%));
+
+// You may remove any of the following modules that you
+// do not use in order to create a smaller css file.
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+// TOOLBARS
+//$toolbar-gradient: color-stops(darken($active-color, 15%), darken($active-color, 1%));
+$toolbar-gradient: color-stops(lighten($alternative-color, 10%), lighten($alternative-color, 25%));
+
+// You may remove any of the following modules that you
+// do not use in order to create a smaller css file.
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+
+
+
+@include pictos-iconmask(team1);
+@include pictos-iconmask(user_add);
+@include pictos-iconmask(user_list);
+@include pictos-iconmask(sync);
+@include pictos-iconmask(delete1);
+@include pictos-iconmask(compose1);
+@include pictos-iconmask(compose2);
+@include pictos-iconmask(delete_black1);
+@include pictos-iconmask(chart1);
+@include pictos-iconmask(chart2);
+@include pictos-iconmask(chart3);
+@include pictos-iconmask(add1);
+
+/**
+ * Includes a base64-encoded icon for use within tab bars and buttons (With the component parameter iconMask: true).
+ *
+ *     @include pictos-iconmask('attachment');
+ *
+ * @param {string} $name The name of the icon to be included. This is to match the name of the icon file (located at resources/themes/images/default/pictos) without its extention (.png).
+ */
+@mixin custom-iconmask($name) {
+  .x-tab .x-button-icon.#{$name},
+  .x-button .x-button-icon.x-icon-mask.#{$name} {
+    -webkit-mask-image: image-url($name + ".png");
+  }
+}
+
+
+.x-tabbar-dark {
+  &.x-docked-bottom {
+    .x-tab {
+      color: lighten($alternative-color, 80%);
+      .x-button-icon {
+        @include background-image(linear-gradient(lighten($alternative-color, 50%),lighten($alternative-color, 80%)));
+      }
+    }
+
+    .x-button-label {
+      text-shadow: none;
+    }
+    .x-tab-active {
+      color: darken($alternative-color, 60%);
+      .x-button-icon {
+        @include background-image(linear-gradient(darken($alternative-color, 5%),darken($alternative-color, 0%)));
+      }
+    }
+  }
+
+}
+
+// FORMS
+.x-toolbar .x-field-search .x-component-outer, .x-toolbar .x-field-select .x-component-outer, .x-toolbar .x-field-text .x-component-outer {
+  border: 1px solid darken($active-color, 10%);
+}
+
+
+
+#timerCard .x-html {
+  padding: 0;
+}
+
+/*timer*/
+@mixin fullTimer($ratio) {
+  .topText, .bottomText {
+    text-align: center;
+    font-size: 90%;
+    color: #ffffff;
+    border-top: 0px solid #999999;
+    background-color: #333333;
+  }
+
+  .topText .x-innerhtml, .bottomText .x-innerhtml {
+    display: table-cell;
+    vertical-align: middle;
+    /*height: 35px;*/
+    /*width: 10000px*/
+  }
+
+  .timerRoot {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    line-height: 1.25 !important;
+  }
+
+  .timer {
+    position: relative;
+    width: 300px*$ratio;
+    height: 160px*$ratio;
+    background: image-url("timerBg2.png") no-repeat center ;
+    background-size: 300px*$ratio auto;
+    margin: 2em 0;
+  }
+
+  .timer.timerOnly {
+    width: 99px*$ratio;
+    height: 113px*$ratio;
+    background: image-url("timer.png") center;
+    background-size: 99px*$ratio auto;
+  }
+
+  .timer .timer-circle {
+    position: absolute;
+    width: 132px*$ratio;
+    height: 132px*$ratio;
+    clip: rect(0px, 132px*$ratio, 132px*$ratio, 66px*$ratio);
+    top: 10px*$ratio;
+    left: 83.5px*$ratio;
+  }
+
+  .timer .time-text {
+    position: absolute;
+    top: 42px*$ratio;
+    left: 105px*$ratio;
+    text-align: center;
+    width: 93px*$ratio;
+  }
+
+  .timer .big {
+    font-size: 3em*$ratio;
+    font-family: Helvetica;
+    height: 3em*$ratio;
+    display: inline-block;
+    color: #343432;
+  }
+
+  .timer .medium {
+    font-size: 2em*$ratio;
+    font-family: Helvetica;
+    height: 1em*$ratio;
+    display: inline-block;
+    color: #343432;
+  }
+
+  .timer .timer-pie {
+    position: absolute;
+    -webkit-mask-image: image-url("timerMask.png");
+    -webkit-mask-origin: border-box;
+    background-origin: border-box;
+    border: 0px;
+    background-clip: border-box;
+  }
+
+  .timer .timer-circle.timer-pie180 {
+    clip: rect(auto, auto, auto, auto) !important;
+  }
+
+  .timer .timer-pie.timer-fill {
+    -webkit-transform: rotate(180deg) !important;
+    display: none;
+  }
+
+  .timer .timer-pie180 .timer-fill {
+    display: inline !important;
+  }
+
+  .timer .timer-pie {
+    background-color: #7EBFFF;
+    border-color: transparent !important;
+    width: 132px*$ratio;
+    height: 132px*$ratio;
+    clip: rect(0px, 66px*$ratio, 132px*$ratio, 0px);
+    -webkit-mask-size: 132px*$ratio 132px*$ratio;
+    -webkit-border-radius: 66px*$ratio;
+  }
+
+  .timer .marker {
+    position: absolute;
+    top: -17px*$ratio;
+    left: 151px*$ratio;
+    width: 1px;
+    height: 184px*$ratio;
+  }
+
+  .timer .markerImage {
+    background: image-url("marker2x.png") top center no-repeat;
+    background-size: 20px*$ratio 27px*$ratio;
+    margin-left: -10px*$ratio;
+    width: 20px*$ratio;
+    height: 27px*$ratio;
+    border: 0px solid #ff0000;
+  }
+
+  .timer .timer-count-text,  .timer .timer-count-text-two {
+    position: absolute;
+    top: 44px*$ratio;
+    text-align: center;
+  }
+
+
+  .timer .timer-count-text {
+    left: 22px*$ratio;
+  }
+
+  .timer .timer-count-text-two {
+    left: 229px*$ratio;
+  }
+
+  .decrease, .decreaseTwo {
+    //background: image-url("minus.png") center center no-repeat;
+
+    position: absolute;
+    height: 1.5em*$ratio;
+    width: 1.5em*$ratio;
+  }
+
+  .decrease {
+    background: image-url("minus.png") top right no-repeat;
+    background-size: 1em*$ratio 1em*$ratio;
+    top: 101px*$ratio;
+    left: 0px*$ratio;
+  }
+  .decreaseTwo {
+    background: image-url("minus.png") top left no-repeat;
+    background-size: 1em*$ratio 1em*$ratio;
+    top: 101px*$ratio;
+    left: 277px*$ratio;
+  }
+}
+
+@media only screen and (min-width : 300px) and (max-width : 330px) {
+  @include fullTimer(1);
+}
+
+@media only screen and (min-width : 331px) and (max-width : 360px) {
+  @include fullTimer(1.1);
+}
+
+@media only screen and (min-width : 361px) and (max-width : 400px) {
+  @include fullTimer(1.2);
+}
+
+@media only screen and (min-width : 401px) and (max-width : 450px) {
+  @include fullTimer(1.3);
+}
+
+@media only screen and (min-width : 451px) and (max-width : 500px) {
+  @include fullTimer(1.5);
+}
+
+@media only screen and (min-width : 501px) and (max-width : 550px) {
+  @include fullTimer(1.6);
+}
+
+@media only screen and (min-width : 551px) and (max-width : 610px) {
+  @include fullTimer(1.8);
+}
+
+@media only screen and (min-width : 611px) and (max-width : 670px) {
+  @include fullTimer(2);
+}
+
+@media only screen and (min-width : 671px) and (max-width :730px) {
+  @include fullTimer(2.2);
+}
+
+
+/**
+ * Includes a base64-encoded icon for use within tab bars and buttons (With the component parameter iconMask: true).
+ *
+ *     @include pictos-iconmask('attachment');
+ *
+ * @param {string} $name The name of the icon to be included. This is to match the name of the icon file (located at resources/themes/images/default/pictos) without its extention (.png).
+ */
+@mixin custom-iconmask($name) {
+  .x-tab .x-button-icon.#{$name},
+  .x-button .x-button-icon.x-icon-mask.#{$name} {
+    -webkit-mask-image: image-url($name + ".png");
+  }
+}
+
+
+.x-tabbar-dark {
+  &.x-docked-bottom {
+    .x-tab {
+      color: lighten($alternative-color, 80%);
+      .x-button-icon {
+        @include background-image(linear-gradient(lighten($alternative-color, 50%),lighten($alternative-color, 80%)));
+      }
+    }
+
+    .x-button-label {
+      text-shadow: none;
+    }
+    .x-tab-active {
+      color: darken($alternative-color, 60%);
+      .x-button-icon {
+        @include background-image(linear-gradient(darken($alternative-color, 5%),darken($alternative-color, 0%)));
+      }
+    }
+  }
+
+}
+
+// FORMS
+.x-toolbar .x-field-search .x-component-outer, .x-toolbar .x-field-select .x-component-outer, .x-toolbar .x-field-text .x-component-outer {
+  border: 1px solid darken($active-color, 10%);
+}
+
+
+
+#timerCard .x-html {
+  padding: 0;
+}
+
+/*timer*/
+@mixin fullTimer($ratio) {
+  .topText, .bottomText {
+    text-align: center;
+    font-size: 90%;
+    color: #ffffff;
+    border-top: 0px solid #999999;
+    background-color: #333333;
+  }
+
+  .topText .x-innerhtml, .bottomText .x-innerhtml {
+    display: table-cell;
+    vertical-align: middle;
+    /*height: 35px;*/
+    /*width: 10000px*/
+  }
+
+  .timerRoot {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    line-height: 1.25 !important;
+  }
+
+  .timer {
+    position: relative;
+    width: 300px*$ratio;
+    height: 160px*$ratio;
+    background: image-url("timerBg2.png") no-repeat center ;
+    background-size: 300px*$ratio auto;
+    margin: 2em 0;
+  }
+
+  .timer.timerOnly {
+    width: 99px*$ratio;
+    height: 113px*$ratio;
+    background: image-url("timer.png") center;
+    background-size: 99px*$ratio auto;
+  }
+
+  .timer .timer-circle {
+    position: absolute;
+    width: 132px*$ratio;
+    height: 132px*$ratio;
+    clip: rect(0px, 132px*$ratio, 132px*$ratio, 66px*$ratio);
+    top: 10px*$ratio;
+    left: 83.5px*$ratio;
+  }
+
+  .timer .time-text {
+    position: absolute;
+    top: 42px*$ratio;
+    left: 105px*$ratio;
+    text-align: center;
+    width: 93px*$ratio;
+  }
+
+  .timer .big {
+    font-size: 3em*$ratio;
+    font-family: Helvetica;
+    height: 3em*$ratio;
+    display: inline-block;
+    color: #343432;
+  }
+
+  .timer .medium {
+    font-size: 2em*$ratio;
+    font-family: Helvetica;
+    height: 1em*$ratio;
+    display: inline-block;
+    color: #343432;
+  }
+
+  .timer .timer-pie {
+    position: absolute;
+    -webkit-mask-image: image-url("timerMask.png");
+    -webkit-mask-origin: border-box;
+    background-origin: border-box;
+    border: 0px;
+    background-clip: border-box;
+  }
+
+  .timer .timer-circle.timer-pie180 {
+    clip: rect(auto, auto, auto, auto) !important;
+  }
+
+  .timer .timer-pie.timer-fill {
+    -webkit-transform: rotate(180deg) !important;
+    display: none;
+  }
+
+  .timer .timer-pie180 .timer-fill {
+    display: inline !important;
+  }
+
+  .timer .timer-pie {
+    background-color: #7EBFFF;
+    border-color: transparent !important;
+    width: 132px*$ratio;
+    height: 132px*$ratio;
+    clip: rect(0px, 66px*$ratio, 132px*$ratio, 0px);
+    -webkit-mask-size: 132px*$ratio 132px*$ratio;
+    -webkit-border-radius: 66px*$ratio;
+  }
+
+  .timer .marker {
+    position: absolute;
+    top: -17px*$ratio;
+    left: 151px*$ratio;
+    width: 1px;
+    height: 184px*$ratio;
+  }
+
+  .timer .markerImage {
+    background: image-url("marker2x.png") top center no-repeat;
+    background-size: 20px*$ratio 27px*$ratio;
+    margin-left: -10px*$ratio;
+    width: 20px*$ratio;
+    height: 27px*$ratio;
+    border: 0px solid #ff0000;
+  }
+
+  .timer .timer-count-text,  .timer .timer-count-text-two {
+    position: absolute;
+    top: 44px*$ratio;
+    text-align: center;
+  }
+
+
+  .timer .timer-count-text {
+    left: 22px*$ratio;
+  }
+
+  .timer .timer-count-text-two {
+    left: 229px*$ratio;
+  }
+
+  .decrease, .decreaseTwo {
+    //background: image-url("minus.png") center center no-repeat;
+
+    position: absolute;
+    height: 1.5em*$ratio;
+    width: 1.5em*$ratio;
+  }
+
+  .decrease {
+    background: image-url("minus.png") top right no-repeat;
+    background-size: 1em*$ratio 1em*$ratio;
+    top: 101px*$ratio;
+    left: 0px*$ratio;
+  }
+  .decreaseTwo {
+    background: image-url("minus.png") top left no-repeat;
+    background-size: 1em*$ratio 1em*$ratio;
+    top: 101px*$ratio;
+    left: 277px*$ratio;
+  }
+}
+
+@media only screen and (min-width : 300px) and (max-width : 330px) {
+  @include fullTimer(1);
+}
+
+@media only screen and (min-width : 331px) and (max-width : 360px) {
+  @include fullTimer(1.1);
+}
+
+@media only screen and (min-width : 361px) and (max-width : 400px) {
+  @include fullTimer(1.2);
+}
+
+@media only screen and (min-width : 401px) and (max-width : 450px) {
+  @include fullTimer(1.3);
+}
+
+@media only screen and (min-width : 451px) and (max-width : 500px) {
+  @include fullTimer(1.5);
+}
+
+@media only screen and (min-width : 501px) and (max-width : 550px) {
+  @include fullTimer(1.6);
+}
+
+@media only screen and (min-width : 551px) and (max-width : 610px) {
+  @include fullTimer(1.8);
+}
+
+@media only screen and (min-width : 611px) and (max-width : 670px) {
+  @include fullTimer(2);
+}
+
+@media only screen and (min-width : 671px) and (max-width :730px) {
+  @include fullTimer(2.2);
+}
+
+@media only screen and (min-width : 731px) and (max-width :790px) {
+  @include fullTimer(2.4);
+}
+
+@media only screen and (min-width : 791px) and (max-width :850px) {
+  @include fullTimer(2.6);
+}
+
+@media only screen and (min-width : 851px) and (max-width :910px) {
+  @include fullTimer(2.8);
+}
+
+@media only screen and (min-width : 910px) and (max-width : 970px) {
+  @include fullTimer(3);
+}
+
+@media only screen and (min-width : 971px) and (max-width : 1030px) {
+  @include fullTimer(3.2);
+}
+
+@media only screen and (min-width : 1031px) and (max-width : 1100px) {
+  @include fullTimer(3.4);
+}
+
+@media only screen and (min-width : 1101px){
+  @include fullTimer(3.6);
+}
