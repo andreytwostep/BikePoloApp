@@ -4,7 +4,14 @@ Ext.define('BikePolo.store.LocalSettings',{
 	config:{
 		model:'BikePolo.model.LocalSettings',
 		storeId:'LocalSettingsStore',
-		//sorters: 'key',
+
+		sorters: 'key',
+		grouper: {
+			groupFn: function(record) {
+				return record.get('value').name[0];
+			}
+		},
+
 		proxy: {
 			type: 'localstorage',
 			id  : 'LocalSettingsStoreProxy'

@@ -9,17 +9,23 @@ Ext.define('BikePolo.view.Main', {
 		'Ext.plugin.PullRefresh'
 	],
 	config: {
-		tabBarPosition: 'bottom',
 		activeItem: 2,
+		ui: 'dark',
+		tabBar: {
+			docked: 'bottom',
+			layout: {
+				pack: 'center'
+			}
+		},
 
 		items: [
 			{
 				title: 'Timer',
-				iconCls: 'home',
+				iconCls: 'time',
 
 				styleHtmlContent: true,
-				scrollable: true,
-
+//				scrollable: true,
+				id: 'timerCard',
 				items: [
 					{
 						xtype: 'timer',
@@ -35,12 +41,33 @@ Ext.define('BikePolo.view.Main', {
 			},
 			{
 				title: 'Teams',
-				iconCls: 'action',
+				iconCls: 'team1',
 				items: [
 					{
 						docked: 'top',
-						xtype: 'titlebar',
-						title: 'Teams'
+						xtype: 'toolbar',
+						title: 'Teams',
+						items: [
+							{
+								xtype: 'button',
+								iconCls: 'add',
+								iconMask: true,
+								handler: function() {
+									var data = BikePolo.app.getController('Data');
+									var helper = BikePolo.app.getController('Helper');
+									var now = helper.getCurrentDate();
+
+								}
+							},
+							{ xtype: 'spacer' },
+							{
+								xtype: 'button',
+								iconCls: 'add',
+								iconMask: true,
+								handler: function(btn) {
+								}
+							}
+						]
 					},
 					{
 						xtype: 'panel',
@@ -65,11 +92,11 @@ Ext.define('BikePolo.view.Main', {
 			},
 			{
 				title: 'Players',
-				iconCls: 'favorites',
+				iconCls: 'user',
 				layout: 'fit',
 				items: [
 					{
-						xtype: 'playerslist'
+						xtype: 'players'
 					}
 				]
 			}

@@ -7,12 +7,15 @@ Ext.define('BikePolo.controller.Main', {
 			'#listPlayers': {
 				itemtap: 'listPlayersItemTap',
 				itemswipe: 'listPlayersItemSwipe'
+			},
+			'#searchPlayer': {
+				keyup: 'onPlayerSearchKeyUp',
+				clearicontap: 'onPlayerSearchClearIconTap'
 			}
 		},
 
 		routes: {
-//			'tutoriallearn': 'showTutorialLearn',
-//			'tutorialteach': 'showTutorialTeach'
+//			'smth': 'showSmth',
 		}
 	},
 
@@ -53,6 +56,46 @@ Ext.define('BikePolo.controller.Main', {
 			rm.style.display = (rm.style.display == 'none') ? 'block' : 'none';
 		}
 
+	},
+
+	onPlayerSearchKeyUp: function(field) {
+		var value = field.getValue(),
+			store = Ext.getCmp('listPlayers').getStore();
+
+		store.clearFilter();
+
+		if (value) {
+			var searches = value.split(' '),
+				regexps = [],
+				i;
+
+			for (i = 0; i < searches.length; i++) {
+				if (!searches[i]) continue;
+
+				regexps.push(new RegExp(searches[i], 'i'));
+			}
+
+			store.filter(function(record) {
+				var matched = [];
+
+				for (i = 0; i < regexps.length; i++) {
+					var search = regexps[i],
+						didMatch = record.get('value').name.match(search);
+
+					matched.push(didMatch);
+				}
+
+				if (regexps.length > 1 && matched.indexOf(false) != -1) {
+					return false;
+				} else {
+					return matched[0];
+				}
+			});
+		}
+	},
+
+	onPlayerSearchClearIconTap: function() {
+		Ext.getCmp('listPlayers').getStore().clearFilter();
 	}
 
 

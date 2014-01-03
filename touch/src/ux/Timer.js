@@ -275,8 +275,11 @@ Ext.define('Ext.ux.Timer',{
 		this.setTimeRunning(false);
 		this.stopTiming();
 		var xy			= this.getXY(), updateLastDeg=true;
-		var deg			= this.rad2deg(Math.atan2(e.getPageY() - xy.y, e.getPageX() - xy.x))+90;
-		deg				= deg>0?deg:360+deg;
+		// fix for android
+//		var deg			= this.rad2deg(Math.atan2(e.getPageY() - xy.y, e.getPageX() - xy.x))+90;
+		var deg			= this.rad2deg(Math.atan2(e.pageY - xy.y, e.pageX - xy.x))+90;
+
+		deg	= deg>0?deg:360+deg;
 		if(this.lastDeg){
 			if(this.lastDeg>270 && this.lastDeg<=360 && deg>=0 && deg<=180){
 				deg = 360;

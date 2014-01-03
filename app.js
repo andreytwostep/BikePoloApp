@@ -41,8 +41,8 @@ Ext.application({
 
 	views: [
         'Main',
-		'PlayersList',
-		'PlayerItem'
+		'Players',
+		'PlayersList'
     ],
 
     icon: {

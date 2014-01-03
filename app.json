@@ -76,9 +76,10 @@
 			"update": "delta"
 		},
 		{
-			"path": "resources/css/ext.ux.timer.css",
+			"path": "resources/mytheme/css/mytheme.css",
 			"update": "delta"
 		}
+
     ],
 
     /**
