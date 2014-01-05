@@ -9,7 +9,7 @@ Ext.define('BikePolo.view.Main', {
 		'Ext.plugin.PullRefresh'
 	],
 	config: {
-		activeItem: 2,
+		activeItem: 1,
 		ui: 'dark',
 		tabBar: {
 			docked: 'bottom',
@@ -40,54 +40,100 @@ Ext.define('BikePolo.view.Main', {
 				]
 			},
 			{
-				title: 'Teams',
+				title: 'Match',
 				iconCls: 'team1',
+				layout: 'fit',
 				items: [
 					{
-						docked: 'top',
-						xtype: 'toolbar',
-						title: 'Teams',
-						items: [
-							{
-								xtype: 'button',
-								iconCls: 'add',
-								iconMask: true,
-								handler: function() {
-									var data = BikePolo.app.getController('Data');
-									var helper = BikePolo.app.getController('Helper');
-									var now = helper.getCurrentDate();
-
-								}
-							},
-							{ xtype: 'spacer' },
-							{
-								xtype: 'button',
-								iconCls: 'add',
-								iconMask: true,
-								handler: function(btn) {
-								}
-							}
-						]
-					},
-					{
-						xtype: 'panel',
-						layout: 'hbox',
-						margin: '.5em',
-						height: '100%',
-						items: [
-							{
-								xtype: 'panel',
-								flex: .5,
-								html: '<h3>First</h3>'
-							},
-							{
-								xtype: 'panel',
-								flex: .5,
-								html: '<h3>Second</h3>'
-							}
-
-						]
+						xtype: 'match'
 					}
+//					{
+//						docked: 'top',
+//						xtype: 'toolbar',
+//						title: 'Match',
+//						items: [
+//							{
+//								xtype: 'button',
+//								iconCls: 'add',
+//								iconMask: true,
+//								handler: function(button, e, eOpts) {
+//									if(!Ext.getCmp('matchplayerslist')){
+//										var playerslist = Ext.widget('matchplayerslist');
+//										playerslist.showBy(button);
+//									}else{
+//										Ext.getCmp('matchplayerslist').destroy();
+//										//Ext.getCmp('listPlayers').getStore().clearFilter();
+//									}
+//
+//
+//								}
+//							},
+//							{ xtype: 'spacer' },
+//							{
+//								xtype: 'button',
+//								iconCls: 'add',
+//								iconMask: true,
+//								handler: function(button, e, eOpts) {
+//									if(!Ext.getCmp('matchplayerslisttwo')){
+//										var playerslist = Ext.widget('matchplayerslisttwo');
+//										playerslist.showBy(button);
+//									}else{
+//										Ext.getCmp('matchplayerslisttwo').destroy();
+//										//Ext.getCmp('listPlayers').getStore().clearFilter();
+//									}
+//								}
+//							}
+//						]
+//					},
+//					{
+//						xtype: 'panel',
+//						layout: 'hbox',
+//						margin: '.5em',
+//						height: '100%',
+//						items: [
+//							{
+//								xtype: 'panel',
+//								flex: .5,
+//								layout: 'fit',
+//								items:[
+//									{
+//										xtype: 'list',
+//										id: 'playNowList',
+//										store: 'PlayNowStore',
+//										margin: '0 .5em 0 0',
+//										itemTpl: [
+//											'<div style="float: left; margin-bottom: 0.5em" >',
+//											'<div class="">{value.name}</div>',
+////											'<div class="">{value.createDate}</div>',
+//											'</div>'
+//										],
+//										variableHeights: true
+//									}
+//								]
+//							},
+//							{
+//								xtype: 'panel',
+//								flex: .5,
+//								layout: 'fit',
+//								items:[
+//									{
+//										xtype: 'list',
+//										id: 'playNowListTwo',
+//										store: 'PlayNowStoreTwo',
+//										margin: '0 .5em 0 0',
+//										itemTpl: [
+//											'<div style="float: left; margin-bottom: 0.5em" >',
+//											'<div class="">{value.name}</div>',
+////											'<div class="">{value.createDate}</div>',
+//											'</div>'
+//										],
+//										variableHeights: true
+//									}
+//								]
+//							}
+//
+//						]
+//					}
 				]
 			},
 			{

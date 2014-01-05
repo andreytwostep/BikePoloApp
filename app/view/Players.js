@@ -25,7 +25,7 @@ Ext.define('BikePolo.view.Players', {
 
 							Ext.Msg.prompt('New Player', '', function(answer, name) {
 									if(answer === 'ok' && name.length > 0){
-										data.setData(name+now, {'name': name, 'createDate': now, 'modifyDate':''});
+										data.setData(name+now, {'name': name, 'createDate': now, 'modifyDate':'', 'score': []});
 										Ext.getStore('LocalSettingsStore').load();
 									}
 								}, null, false, null,
@@ -60,7 +60,7 @@ Ext.define('BikePolo.view.Players', {
 			},
 			{
 				xtype: 'searchfield',
-				id: 'searchPlayer',
+				action: 'searchPlayer',
 				placeHolder: 'Search...'
 			},
 			{
@@ -86,11 +86,17 @@ Ext.define('BikePolo.view.Players', {
 				plugins: [
 					{
 						xclass: 'Ext.plugin.PullRefresh',
-						pullRefreshText: 'Pull down for more records!'
+						pullRefreshText: 'Pull down for more records!',
+						refreshFn: function(plugin) {
+							Ext.getCmp('listPlayers').getStore().clearFilter();
+						}
 					}
 				],
 				variableHeights: true
 			}
 		]
 	}
+
+
+
 });

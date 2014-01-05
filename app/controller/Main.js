@@ -8,7 +8,7 @@ Ext.define('BikePolo.controller.Main', {
 				itemtap: 'listPlayersItemTap',
 				itemswipe: 'listPlayersItemSwipe'
 			},
-			'#searchPlayer': {
+			'[action=searchPlayer]': {
 				keyup: 'onPlayerSearchKeyUp',
 				clearicontap: 'onPlayerSearchClearIconTap'
 			}
@@ -35,7 +35,8 @@ Ext.define('BikePolo.controller.Main', {
 				function(answer, name) {
 					if(answer === 'ok' && name.length > 0){
 						var key = el.getAttribute('name');
-						data.setData(key, {'name': name, 'createDate': now, 'modifyDate': now });
+						var score = record.data.value.score || [];
+						data.setData(key, {'name': name, 'createDate': record.data.value.createDate, 'modifyDate': now, 'score': score });
 					}
 				},
 				null, false, null,
@@ -97,7 +98,6 @@ Ext.define('BikePolo.controller.Main', {
 	onPlayerSearchClearIconTap: function() {
 		Ext.getCmp('listPlayers').getStore().clearFilter();
 	}
-
 
 });
 

@@ -79,6 +79,8 @@ $toolbar-gradient: color-stops(lighten($alternative-color, 10%), lighten($altern
 @include pictos-iconmask(chart2);
 @include pictos-iconmask(chart3);
 @include pictos-iconmask(add1);
+@include pictos-iconmask(minus1);
+@include pictos-iconmask(minus2);
 
 /**
  * Includes a base64-encoded icon for use within tab bars and buttons (With the component parameter iconMask: true).

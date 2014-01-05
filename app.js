@@ -32,17 +32,24 @@ Ext.application({
 	controllers: [
 		'Data',
 		'Helper',
-		'Main'
+		'Main',
+		'Match'
 	],
 
-	stores: [ 'LocalSettings' ],
+	stores: [
+		'LocalSettings',
+		'PlayNow',
+		'PlayNowTwo'
+	],
 
 	models: [ 'LocalSettings' ],
 
 	views: [
         'Main',
 		'Players',
-		'PlayersList'
+		'Match',
+		'MatchPlayersList',
+		'MatchPlayersListTwo'
     ],
 
     icon: {
